@@ -1,0 +1,370 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>17 günde App Store'a: Mate uygulamasının planı</title>
+<meta name="description" content="Ailemin kafesi Mate için 17 günde yaptığım uygulamanın planı: kapsam kararları, mimari, damga sistemi, gün gün takvim, App Store hazırlığı ve kontrol listesi.">
+<meta property="og:title" content="17 günde App Store'a: Mate uygulamasının planı">
+<meta property="og:description" content="Kararlar, mimari, takvim ve kontrol listesi. Kerem Özdemir">
+<meta name="theme-color" content="#F2E8D5">
+<meta name="color-scheme" content="light">
+<style>
+@font-face { font-family: "Young Serif"; src: url("YoungSerif.ttf") format("truetype"); font-display: swap; }
+:root {
+  --bg: #F2E8D5; --card: #FBF6EC; --fg: #14213D; --soft: rgba(20,33,61,.68); --faint: rgba(20,33,61,.12);
+  --red: #C8102E; --navy: #14213D; --cream: #F2E8D5; --code: #E9DDC5; --codefg: #14213D;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--fg); font: 17px/1.62 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+       font-variant-numeric: lining-nums; -webkit-font-smoothing: antialiased; }
+.wrap { max-width: 720px; margin: 0 auto; padding: 0 20px 80px; }
+h1, h2, h3, .serif { font-family: "Young Serif", Georgia, serif; font-weight: 400; font-variant-numeric: lining-nums; font-feature-settings: "lnum" 1; }
+header { background: var(--bg); color: var(--fg); padding: 52px 20px 34px; border-bottom: 1px solid var(--faint); }
+header .wrap { padding-bottom: 0; }
+.kicker { font-family: "Young Serif", serif; color: var(--red); font-size: 17px; letter-spacing: .02em; }
+header h1 { font-size: clamp(40px, 10vw, 64px); line-height: 1.02; letter-spacing: -.02em; margin: 10px 0 18px; }
+header p { color: var(--soft); font-size: 18px; max-width: 34em; }
+.by { margin-top: 22px; font-size: 14px; color: var(--soft); }
+.stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin: 30px 0 0; }
+.stats div { background: var(--card); border: 1px solid var(--faint); border-radius: 16px; padding: 14px 16px; }
+.stats b { display: block; font-family: "Young Serif", serif; font-weight: 400; font-size: 30px; line-height: 1.1; color: var(--red); }
+.stats span { font-size: 13.5px; color: var(--soft); }
+@media (min-width: 620px) { .stats { grid-template-columns: repeat(4, 1fr); } }
+nav { margin: 36px 0 8px; padding: 20px 22px; background: var(--card); border-radius: 18px; border: 1px solid var(--faint); }
+nav .serif { font-size: 20px; margin-bottom: 8px; }
+nav ol { padding-left: 22px; columns: 1; }
+@media (min-width: 620px) { nav ol { columns: 2; column-gap: 34px; } }
+nav li { margin: 3px 0; break-inside: avoid; }
+nav a { color: var(--fg); text-decoration: none; border-bottom: 1px solid var(--faint); }
+section { padding-top: 46px; }
+h2 { font-size: clamp(28px, 6.4vw, 38px); line-height: 1.1; letter-spacing: -.015em; margin-bottom: 6px; }
+h2 .n { color: var(--red); margin-right: 6px; }
+.lead { color: var(--soft); font-size: 17.5px; margin-bottom: 18px; }
+h3 { font-size: 22px; line-height: 1.2; margin: 28px 0 8px; }
+p { margin: 10px 0; }
+ul, ol { padding-left: 22px; margin: 10px 0; }
+li { margin: 6px 0; }
+strong { font-weight: 650; }
+a { color: var(--red); }
+code { font-family: ui-monospace, Menlo, monospace; font-size: .88em; background: var(--faint); padding: 1px 6px; border-radius: 6px; }
+pre { background: var(--code); color: var(--codefg); border-radius: 16px; padding: 18px; overflow-x: auto; margin: 14px 0;
+      font: 13.5px/1.55 ui-monospace, Menlo, monospace; }
+pre .c { color: #7A6F5C; } pre .k { color: #B0102A; } pre .s { color: #2F6B4F; }
+.note { background: var(--card); border: 1px solid var(--faint); border-left: 4px solid var(--red); border-radius: 12px; padding: 14px 16px; margin: 16px 0; }
+.note b { font-weight: 650; }
+.cards { display: grid; gap: 10px; margin: 14px 0; }
+.card { background: var(--card); border: 1px solid var(--faint); border-radius: 16px; padding: 16px 18px; }
+.card .t { font-weight: 650; }
+.card .d { color: var(--soft); font-size: 15.5px; margin-top: 4px; }
+table { width: 100%; border-collapse: collapse; font-size: 15px; margin: 14px 0; }
+th, td { text-align: left; vertical-align: top; padding: 9px 10px; border-bottom: 1px solid var(--faint); }
+th { font-weight: 650; font-size: 13.5px; color: var(--soft); }
+.tbl { overflow-x: auto; background: var(--card); border: 1px solid var(--faint); border-radius: 16px; padding: 4px 6px; margin: 14px 0; }
+.tbl table { margin: 0; }
+.ok { color: #2E8B57; font-weight: 700; }
+/* mimari şeması */
+.arch { display: grid; gap: 10px; margin: 16px 0; }
+.box { border-radius: 16px; padding: 14px 16px; border: 1px solid var(--faint); background: var(--card); }
+.box .h { font-family: "Young Serif", serif; font-size: 19px; }
+.box .s { font-size: 14.5px; color: var(--soft); margin-top: 2px; }
+.box.main { border-top: 3px solid var(--red); }
+.row { display: grid; gap: 10px; grid-template-columns: 1fr 1fr; }
+.arrow { text-align: center; color: var(--soft); font-size: 14px; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+.chips span { font-size: 13px; padding: 4px 10px; border-radius: 999px; background: var(--faint); }
+/* takvim */
+.tl { position: relative; margin: 18px 0; padding-left: 26px; }
+.tl:before { content: ""; position: absolute; left: 7px; top: 6px; bottom: 6px; width: 2px; background: var(--faint); }
+.tl .g { position: relative; margin-bottom: 18px; }
+.tl .g:before { content: ""; position: absolute; left: -25px; top: 7px; width: 14px; height: 14px; border-radius: 50%; background: var(--bg); border: 3px solid var(--red); }
+.tl .g.big:before { background: var(--red); }
+.tl .dt { font-family: "Young Serif", serif; font-size: 19px; }
+.tl .dt small { font-family: -apple-system, sans-serif; font-size: 13px; color: var(--soft); margin-left: 6px; }
+.tl .tx { color: var(--soft); font-size: 15.5px; }
+/* kontrol listesi */
+.check { list-style: none; padding: 0; counter-reset: c; }
+.check li { counter-increment: c; position: relative; padding: 12px 14px 12px 52px; background: var(--card); border: 1px solid var(--faint); border-radius: 14px; margin: 8px 0; }
+.check li:before { content: counter(c); position: absolute; left: 14px; top: 11px; width: 26px; height: 26px; border-radius: 50%; background: var(--red); color: #F2E8D5;
+                   font: 15px/26px "Young Serif", serif; text-align: center; }
+.check li span { display: block; color: var(--soft); font-size: 15px; }
+footer { margin-top: 56px; padding: 26px 22px; border-radius: 20px; background: var(--card); border: 1px solid var(--faint); border-top: 3px solid var(--red); }
+footer .serif { font-size: 24px; line-height: 1.2; }
+footer p { color: var(--soft); font-size: 15.5px; }
+footer a { color: var(--red); }
+.small { font-size: 13.5px; color: var(--soft); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="kicker">Mate Floral · 13 Ekim – 30 Ekim 2026</div>
+    <h1>17 günde App&nbsp;Store'a</h1>
+    <p>Ailemin kafesi Mate için yaptığım uygulamanın bütün planı: neyi neden yapmadım, hangi altyapıyı kurdum, damga sistemi nasıl çalışıyor, gün gün ne yapıldı ve Apple'a göndermeden önce neleri kontrol ettim.</p>
+    <div class="stats">
+      <div><b>17</b><span>gün, fikirden App Store'a</span></div>
+      <div><b>1 kod</b><span>iOS ve Android</span></div>
+      <div><b>0 ret</b><span>ilk gönderimde onay</span></div>
+      <div><b>79</b><span>üye, ilk 13 günde</span></div>
+    </div>
+    <div class="by">Kerem Özdemir · <a href="https://www.instagram.com/itskeremozdemir/">@itskeremozdemir</a> · Kodu yapay zekâ (Claude Code) yazdı, kararları ben verdim.</div>
+  </div>
+</header>
+
+<main class="wrap">
+
+<nav>
+  <div class="serif">İçindekiler</div>
+  <ol>
+    <li><a href="#kapsam">Önce kapsam</a></li>
+    <li><a href="#mimari">Mimari ve araçlar</a></li>
+    <li><a href="#damga">Damga sistemi nasıl çalışıyor</a></li>
+    <li><a href="#bildirim">Bildirim, Cüzdan ve widget</a></li>
+    <li><a href="#takvim">Gün gün takvim</a></li>
+    <li><a href="#flutter">Swift'ten Flutter'a geçiş</a></li>
+    <li><a href="#appstore">App Store'a hazırlık</a></li>
+    <li><a href="#yz">Yapay zekâyla çalışma şeklim</a></li>
+    <li><a href="#maliyet">Maliyet</a></li>
+    <li><a href="#sonra">Yayından sonra</a></li>
+    <li><a href="#liste">Kontrol listesi</a></li>
+  </ol>
+</nav>
+
+<section id="kapsam">
+  <h2><span class="n">1</span>Önce kapsam</h2>
+  <p class="lead">Hızın büyük kısmı, ilk gün listeden silinen işlerden geldi.</p>
+
+  <h3>Uygulamanın bir işi olmalı</h3>
+  <p>İlk fikrim menüyü gösteren bir uygulamaydı. Apple'ın inceleme kurallarında <strong>4.2 (Minimum Functionality)</strong> maddesi var: web sitesinden farkı olmayan, sadece içerik gösteren uygulamalar reddedilebiliyor. Yani uygulamanın kullanıcıya yaptırdığı bir iş olmalıydı.</p>
+  <p>Starbucks, Espressolab, Kahve Dünyası ve Caffè Nero'nun uygulamalarına baktım. Hepsinde ortak olan şey, müşteriyi tekrar getiren bir kart ya da puan sistemiydi. Mate'in uygulamasının işi de bu oldu: <strong>ikram kartı</strong>.</p>
+  <div class="note"><b>Akış tek cümle:</b> Müşteri telefonundaki QR kodu gösteriyor, personel kendi telefonundan okutuyor, damga basılıyor. Uygulamadaki her şey bu cümlenin etrafına kuruldu.</div>
+
+  <h3>Ödeme isteyen her şeyi ilk sürümden çıkar</h3>
+  <p>İlk planda buket siparişi de vardı. Onu çıkardım. Uygulamadan ödeme almak şunlar demekti:</p>
+  <ul>
+    <li>Sanal POS anlaşması ve hazır ödeme sayfası entegrasyonu</li>
+    <li>Mesafeli satış sözleşmesi ve ön bilgilendirme formu</li>
+    <li>Teslimat süreci</li>
+  </ul>
+  <p>Fiziksel ürün sattığın için Apple'ın uygulama içi satın alma zorunluluğu buna uygulanmıyor, ama iş yükü yine de 17 güne sığmazdı. Buket isteyen kullanıcı uygulamadan web sitesine gidiyor. Önceden sipariş, kahve ısmarlama ve hediye kart gibi fikirler de “sonraki sürüm” listesine yazıldı. Önceden sipariş yayından iki gün sonra geldi, ödemesi kasada alınıyor.</p>
+
+  <h3>Bilerek koymadıklarım</h3>
+  <ul>
+    <li><strong>Oyunlara ödül:</strong> Şansa dayalı ödül çekiliş sayılıp izin gerektirebiliyor. Oyunlar sadece eğlence.</li>
+    <li><strong>Kahve falı:</strong> Denedik, işletme istemedi, kaldırdık.</li>
+    <li><strong>Google Cüzdan:</strong> Türkiye'de kullanılamadığı için bağlanmadı.</li>
+  </ul>
+</section>
+
+<section id="mimari">
+  <h2><span class="n">2</span>Mimari ve araçlar</h2>
+  <p class="lead">Sunucu yazmadım. Bütün arka uç Supabase'in ücretsiz planında duruyor.</p>
+
+  <div class="arch">
+    <div class="row">
+      <div class="box main"><div class="h">Müşteri uygulaması</div><div class="s">Flutter · iOS ve Android</div>
+        <div class="chips"><span>Kart ve QR</span><span>Menü</span><span>Oyunlar</span></div></div>
+      <div class="box main"><div class="h">Personel ekranı</div><div class="s">Aynı uygulama, yetkiye göre açılan sekme</div>
+        <div class="chips"><span>QR okut</span><span>Siparişler</span><span>Yönetim</span></div></div>
+    </div>
+    <div class="arrow">↓ supabase_flutter · giriş ve sorgular ↓</div>
+    <div class="box"><div class="h">Supabase</div><div class="s">Tek panelde veritabanı, giriş, dosya deposu ve sunucu fonksiyonları</div>
+      <div class="chips"><span>Postgres + RLS</span><span>Auth: Apple, Google, e-posta</span><span>Storage: menü fotoğrafları</span><span>Edge Functions</span><span>pg_cron</span></div></div>
+    <div class="arrow">↓ Edge Functions dış servislere bağlanır ↓</div>
+    <div class="row">
+      <div class="box"><div class="h">Bildirim</div><div class="s">iOS: APNs · Android: FCM</div></div>
+      <div class="box"><div class="h">Apple Cüzdan</div><div class="s">İmzalı .pkpass, canlı güncelleme</div></div>
+      <div class="box"><div class="h">E-posta</div><div class="s">Resend, kendi alan adından</div></div>
+      <div class="box"><div class="h">Menü verisi</div><div class="s">Kasa programının Excel çıktısı</div></div>
+    </div>
+  </div>
+
+  <h3>Neden Supabase</h3>
+  <p>Veritabanı, kullanıcı girişi ve sunucu fonksiyonları tek yerde ve ücretsiz planı bu ölçek için yetiyor. En önemli sebep <strong>Row Level Security (RLS)</strong>: güvenlik kuralları veritabanının içinde yazıldığı için uygulama veritabanıyla doğrudan konuşabiliyor, araya ayrı bir sunucu yazmak gerekmiyor.</p>
+
+  <h3>Kullanılan paketler</h3>
+  <div class="tbl"><table>
+    <tr><th>İş</th><th>Paket</th></tr>
+    <tr><td>Veritabanı ve giriş</td><td><code>supabase_flutter</code></td></tr>
+    <tr><td>Apple ve Google ile giriş</td><td><code>sign_in_with_apple</code>, <code>google_sign_in</code></td></tr>
+    <tr><td>QR gösterme ve okutma</td><td><code>qr_flutter</code>, <code>mobile_scanner</code></td></tr>
+    <tr><td>Kart açıkken ekranı aydınlatma</td><td><code>screen_brightness</code></td></tr>
+    <tr><td>Ana ekran widget'ı</td><td><code>home_widget</code></td></tr>
+    <tr><td>Özel gün hatırlatmaları</td><td><code>flutter_local_notifications</code>, <code>timezone</code></td></tr>
+    <tr><td>Uygulama puanı isteme</td><td><code>in_app_review</code></td></tr>
+  </table></div>
+
+  <h3>Menüyü elle girmedim</h3>
+  <p>Kafenin kasa programından “Kategori ve Ürünler” listesini Excel olarak aldım: 14 kategori, 169 ürün. Çiçekleri, taze sıkımları, paket ürünleri ve vazoları çıkardık; 10 kategori ve 122 ürün kaldı. Ürünün kimliği olarak kasadaki entegrasyon kodu kullanılıyor, böylece ileride kasayla eşleştirmek kolay. Uygulama menüyü sunucudan alıp telefona kaydediyor; internet yokken de açılıyor.</p>
+</section>
+
+<section id="damga">
+  <h2><span class="n">3</span>Damga sistemi nasıl çalışıyor</h2>
+  <p class="lead">Uygulamanın kalbi. Hem basit hem hileye dayanıklı olmalıydı.</p>
+
+  <h3>Bakiye değil, defter</h3>
+  <p>Müşterinin “kaç damgası var” bilgisini tek bir sayı olarak tutmuyorum. Her damga ve her ikram bir satır: <code>+1</code>, <code>+2</code> ya da ikram kullanılınca eksi. Bakiye bu satırların toplamı. Böylece geçmiş kayboluyor, yanlış basılan damga geri alınabiliyor ve kimin bastığı her zaman görülüyor.</p>
+
+  <h3>QR kodda ne var</h3>
+  <p>Müşterinin QR kodunda sadece <code>mate:</code> ön eki ve kullanıcının kimliği (UUID) var. Personel okutunca uygulama önce biçimi kontrol ediyor, sonra sunucudaki fonksiyonu çağırıyor. Damga basma yetkisi sunucuda olduğu için QR kodun fotoğrafını çekip kendine damga basmak mümkün değil.</p>
+
+  <h3>Güvenlik kuralları</h3>
+  <ul>
+    <li>Müşteri sadece kendi kayıtlarını okuyabiliyor (RLS).</li>
+    <li>Damgayı sadece personel basabiliyor; fonksiyon ilk satırda bunu kontrol ediyor.</li>
+    <li>Personel kendi kartına damga basamıyor.</li>
+    <li>Aynı karta 30 saniye içinde ikinci damga basılamıyor (yanlışlıkla iki kez okutmaya karşı).</li>
+    <li>Aynı anda gelen iki okutma için kilit var; ikisi birden kontrolü geçemiyor.</li>
+  </ul>
+  <pre><span class="c">-- Personel müşterinin QR'ını okutunca çağrılır (kısaltılmış)</span>
+<span class="k">create function</span> add_stamps(customer uuid, count int) <span class="k">returns</span> int
+<span class="k">language</span> plpgsql <span class="k">security definer as</span> $$
+<span class="k">begin</span>
+  <span class="k">if not</span> is_staff() <span class="k">then raise exception</span> <span class="s">'yetkisiz'</span>; <span class="k">end if</span>;
+  <span class="c">-- aynı müşteriye aynı anda iki okutma gelirse sıraya sokar</span>
+  <span class="k">perform</span> pg_advisory_xact_lock(hashtext(customer::text));
+  <span class="k">if exists</span> (<span class="k">select</span> 1 <span class="k">from</span> loyalty_events
+             <span class="k">where</span> user_id = customer <span class="k">and</span> delta > 0
+               <span class="k">and</span> created_at > now() - interval <span class="s">'30 seconds'</span>) <span class="k">then</span>
+    <span class="k">raise exception</span> <span class="s">'bu karta az önce damga basıldı'</span>;
+  <span class="k">end if</span>;
+  <span class="k">insert into</span> loyalty_events (user_id, delta, staff_id)
+    <span class="k">values</span> (customer, count, auth.uid());
+  <span class="k">return</span> stamp_balance(customer);
+<span class="k">end</span>; $$;</pre>
+  <div class="note"><b>Dikkat:</b> Supabase yeni fonksiyonlara varsayılan olarak çalıştırma izni veriyor. Bakiyeyi hesaplayan iç fonksiyonun iznini kaldırmazsan, herkes başkasının bakiyesini sorgulayabilir. Her fonksiyondan sonra <code>revoke execute</code> ile kimin çağırabileceğini açıkça yazdım.</div>
+
+  <h3>Kart iki hediye damgayla başlıyor</h3>
+  <p>Kart 10 kutu görünüyor ve ilk ikisi “Mate'den hediye” yazısıyla dolu geliyor. İkram için yine 8 gerçek damga gerekiyor: sunucudaki kural hiç değişmedi, sadece kartın görünüşü değişti.</p>
+  <p>Sebebi 2006'da bir oto yıkamada yapılan deney (Nunes ve Drèze). İki gruba da 8 yıkama gerekiyordu. Boş kartla başlayanların %19'u kartı tamamladı, iki damgası basılmış kartla başlayanların %34'ü. Buna <strong>verilmiş ilerleme etkisi</strong> (endowed progress effect) deniyor.</p>
+  <p class="small">Sonradan gelen kurallar: içecek 1 damga (16.00'ya kadar 2), tatlı 2 damga; çay ve Türk kahvesi damga kazandırmıyor, ikramlar içecekte geçerli.</p>
+</section>
+
+<section id="bildirim">
+  <h2><span class="n">4</span>Bildirim, Cüzdan ve widget</h2>
+  <p class="lead">Damga basıldığı an müşterinin telefonunda görünmeli.</p>
+  <div class="cards">
+    <div class="card"><div class="t">Damga bildirimi</div><div class="d">Damga satırı eklenince veritabanı tetikleyicisi bir Edge Function'ı çağırıyor. Fonksiyon iPhone'lara doğrudan APNs ile, Android'lere FCM ile bildirim gönderiyor. İstek gizli bir anahtarla doğrulanıyor, herkes tetikleyemiyor.</div></div>
+    <div class="card"><div class="t">Apple Cüzdan kartı</div><div class="d">Ayrı bir fonksiyon imzalı <code>.pkpass</code> dosyası üretiyor. Bunun için Apple Developer hesabından Pass Type ID sertifikası gerekiyor. Cüzdan web servisi sayesinde kart, uygulama kapalıyken de damga basılınca güncelleniyor.</div></div>
+    <div class="card"><div class="t">Widget</div><div class="d">Ana ekran ve kilit ekranında damga sayısı ve QR kod. Kasada uygulamayı açmadan okutulabiliyor.</div></div>
+    <div class="card"><div class="t">Haftalık öneriler</div><div class="d"><code>pg_cron</code> haftada bir aynı bildirim fonksiyonunu çağırıyor; bildirime dokununca menü o ürünle açılıyor (<code>mate://menu?urun=…</code>).</div></div>
+  </div>
+</section>
+
+<section id="takvim">
+  <h2><span class="n">5</span>Gün gün takvim</h2>
+  <p class="lead">Depolardaki commit geçmişinden çıkarıldı: Swift sürümünde 70, Flutter sürümünde yayına kadar 103 commit.</p>
+  <div class="tl">
+    <div class="g big"><div class="dt">13 Ekim <small>1. gün</small></div><div class="tx">Kapsam kararı, Xcode projesi, Supabase şeması ve menü verisi. Apple ile giriş, profil, hesap silme. İkram kartı, personelin QR okutma ekranı, Google ve e-posta ile giriş. Yasal metin taslakları.</div></div>
+    <div class="g big"><div class="dt">14 Ekim <small>2. gün</small></div><div class="tx">Resend ile e-posta, saate göre değişen ana sayfa, Cüzdan düzeninde kart, Ayarlar düzeninde profil, 12 çizim avatar, özel gün hatırlatıcısı, uygulama ikonu, yönetici ekranı, widget, damga bildirimleri, Apple Cüzdan kartı, App Store metinleri ve ekran görüntüleri.</div></div>
+    <div class="g"><div class="dt">15–16 Ekim</div><div class="tx">Menünün kategori ve ürün sırası düzenlendi. Cüzdan sertifikası bağlandı.</div></div>
+    <div class="g"><div class="dt">18 Ekim</div><div class="tx">Her şey gerçek telefonda denendi. Personel ekranı sadeleşti. Gizlilik bildirim dosyaları ve inceleme notları eklendi, iki hediye damga ve oyunlar geldi.</div></div>
+    <div class="g"><div class="dt">19 Ekim</div><div class="tx">Menü fotoğrafları ve ürün açıklamaları, üyelik seviyeleri, Çiçek Defteri.</div></div>
+    <div class="g big"><div class="dt">20 Ekim <small>baştan yazım</small></div><div class="tx">Flutter sürümünün ilk tam kodu: iOS ve Android tek kodda. Android için bildirim, widget ve imzalı derleme.</div></div>
+    <div class="g"><div class="dt">21–29 Ekim</div><div class="tx">TestFlight'a 20'den fazla test sürümü. Android bildirimi uçtan uca denendi, Play Store metinleri hazırlandı, oyunlar ve personel görevleri eklendi.</div></div>
+    <div class="g big"><div class="dt">30 Ekim <small>yayın</small></div><div class="tx">App Store'da. Apple ilk gönderimde onayladı. Aynı gün ilk güncelleme (1.0.1) hazırlandı.</div></div>
+  </div>
+</section>
+
+<section id="flutter">
+  <h2><span class="n">6</span>Swift'ten Flutter'a geçiş</h2>
+  <p class="lead">Yarı yolda baştan yazmak, doğru yöntemle bir haftaya sığdı.</p>
+  <p>İlk sürüm SwiftUI ile yazılmıştı, sadece iPhone'da çalışacaktı. Android kullanan müşteri uygulamayı indiremeyecekti. Flutter'a geçmeye karar verdim: tek kod, iki platform. Swift sürümü hiç yayınlanmadı.</p>
+  <h3>Sunucu aynen kaldı</h3>
+  <p>Bütün kurallar, yetkiler ve fonksiyonlar Supabase'teydi. Bu yüzden sadece uygulamanın kendisi yeniden yazıldı; veritabanına neredeyse dokunulmadı. Kuralları sunucuya koymanın en büyük faydası burada çıktı.</p>
+  <h3>Eşitlik listesi</h3>
+  <p>Geçişi tek bir tabloyla yönettim. Swift sürümündeki her davranış bir satır (toplam 126 satır). Her satırın üç kutusu var: Flutter'da kodu yazıldı mı, iOS'ta denendi mi, Android'de denendi mi. Üçü dolmadan o satır bitmiş sayılmıyor.</p>
+  <div class="tbl"><table>
+    <tr><th>Davranış</th><th>Android farkı</th><th>Kod</th><th>iOS</th><th>Android</th></tr>
+    <tr><td>Saate göre selam: 06–12 Günaydın, 15–20 Tatlı saati…</td><td>aynı</td><td class="ok">✓</td><td class="ok">✓</td><td class="ok">✓</td></tr>
+    <tr><td><code>mate://kart</code> bağlantısı Kart sekmesini açar</td><td>intent-filter</td><td class="ok">✓</td><td class="ok">✓</td><td class="ok">✓</td></tr>
+    <tr><td>Oturum değişince Cüzdan, favoriler ve widget yenilenir</td><td>Cüzdan yok</td><td class="ok">✓</td><td class="ok">✓</td><td class="ok">✓</td></tr>
+  </table></div>
+  <div class="note"><b>Neden işe yarıyor:</b> Yapay zekâya “şu listedeki boş kutuları bitir” diyebiliyorsun. Neyin eksik kaldığını tahmin etmek yerine liste gösteriyor, hiçbir özellik geçişte kaybolmuyor.</div>
+</section>
+
+<section id="appstore">
+  <h2><span class="n">7</span>App Store'a hazırlık</h2>
+  <p class="lead">Apple ilk gönderimde onayladı. Göndermeden önce bu listeyi tek tek kontrol ettim.</p>
+  <ul class="check">
+    <li><strong>Kural 4.2: Uygulamanın bir işi var</strong><span>Sadece menü değil; kart, damga, sipariş.</span></li>
+    <li><strong>Kural 5.1.1: Hesap uygulamanın içinden silinebiliyor</strong><span>Hesap açtırıyorsan zorunlu. Profil &gt; Hesabı sil. Apple ile girişte silinen hesabın Apple bağlantısı da iptal ediliyor.</span></li>
+    <li><strong>Kural 4.8: Gizlilik odaklı giriş seçeneği</strong><span>Google ile giriş sunuyorsan, gizlilik odaklı eşdeğer bir seçenek de olmalı. Apple ile Giriş bunu karşılıyor.</span></li>
+    <li><strong>Gizlilik bildirim dosyası (PrivacyInfo.xcprivacy)</strong><span>Hem uygulama hem widget için. Yayından önceki kontrolde eksik olduğunu bu listeyle yakaladım.</span></li>
+    <li><strong>App Privacy yanıtları</strong><span>Hangi veriyi hangi amaçla topladığını tek tek yaz. Mate'te izleme (tracking) ve reklam yok.</span></li>
+    <li><strong>İnceleme notları ve deneme hesabı</strong><span>Personel sekmesinin ne olduğunu, damganın iki telefonla nasıl deneneceğini ve gizli özellik olmadığını yazdım. İnceleyen kişi neyi nasıl deneyeceğini bilmeli.</span></li>
+    <li><strong>Uygulama içinde ödeme yok</strong><span>Önceden siparişin ödemesi kasada, buket siparişi web sitesinde.</span></li>
+    <li><strong>Şansa dayalı ödül yok</strong><span>Oyunlarda ödül olmadığı için çekiliş kurallarına takılmıyor.</span></li>
+    <li><strong>Ekran görüntüleri ve metinler</strong><span>6,9 inç için 1320×2868 ekran görüntüleri, alt başlık, anahtar kelimeler, destek ve gizlilik bağlantıları.</span></li>
+  </ul>
+</section>
+
+<section id="yz">
+  <h2><span class="n">8</span>Yapay zekâyla çalışma şeklim</h2>
+  <p class="lead">Kodu Claude Code yazdı. Benim işim ne yapılacağına karar vermek ve sonucu denemekti.</p>
+  <h3>Davranışı anlat, referans göster</h3>
+  <p>“Güzel bir kart ekranı yap” demedim. Şunları söyledim: kart Apple Cüzdan'daki kartlara benzesin, profil telefonun Ayarlar ekranı gibi olsun, ana sayfadaki başlık saate göre değişsin: sabah “Günaydın”, öğleden sonra “Tatlı saati”. Herkesin bildiği bir ekranı örnek göstermek, uzun tariften daha iyi sonuç veriyor.</p>
+  <h3>Kuralları bir dosyaya yaz</h3>
+  <p>Proje klasöründeki <code>CLAUDE.md</code> dosyasında yayın kuralları duruyor: her değişiklik iki platforma çıkar, “yeni build al” denince iOS ve Android derlemeleri üretilir, iOS derlemesi TestFlight'a yüklenir. Yapay zekâ her oturumda bunu okuyor, aynı şeyi tekrar anlatmak gerekmiyor.</p>
+  <h3>Her günü not et</h3>
+  <p>Her günün sonunda ne yapıldığını, hangi kararın neden alındığını ve neyin beklediğini not ettim. Ertesi gün işe bu notla başladım. Bu rehberdeki tarihlerin hepsi o notlardan ve commit geçmişinden.</p>
+  <h3>Kontrol sende</h3>
+  <p>Yayından önceki kontrolde, sunucudaki menünün üç gün önce değiştirdiğimiz sıraya hiç geçmediğini fark ettim. Kod çalışıyordu, testler geçiyordu; telefonda bakmasam fark etmeyecektim. Yapay zekâ hızlı yazıyor, ama doğru olup olmadığına telefonda bakan kişi karar veriyor.</p>
+</section>
+
+<section id="maliyet">
+  <h2><span class="n">9</span>Maliyet</h2>
+  <div class="tbl"><table>
+    <tr><th>Kalem</th><th>Ücret</th></tr>
+    <tr><td>Apple Developer Program</td><td>Yıllık üyelik (99 USD)</td></tr>
+    <tr><td>Google Play geliştirici hesabı</td><td>Tek seferlik (25 USD)</td></tr>
+    <tr><td>Supabase: veritabanı, giriş, fonksiyonlar</td><td>Ücretsiz plan</td></tr>
+    <tr><td>Resend: e-posta gönderimi</td><td>Ücretsiz katman</td></tr>
+    <tr><td>Firebase Cloud Messaging: Android bildirimleri</td><td>Ücretsiz</td></tr>
+    <tr><td>Alan adı</td><td>İşletmenin mevcut alan adı</td></tr>
+  </table></div>
+  <p class="small">Yapay zekâ aboneliği bu tabloya dahil değil. Fiyatlar Kasım 2026'daki listelere göre; değişebilir.</p>
+</section>
+
+<section id="sonra">
+  <h2><span class="n">10</span>Yayından sonra</h2>
+  <p class="lead">Yayın günü iş bitmedi, istekler o gün başladı.</p>
+  <p>Aynı gün WhatsApp'tan yeni bir istek geldi: personel için ciro ve stok takibi. İki gün sonra bir tane daha: müşteri uygulamadan sipariş versin, teslim saatini seçsin, gelip alsın. Onun kodu da aynı gün yazıldı.</p>
+  <div class="stats" style="margin-top:18px">
+    <div><b>79</b><span>üye</span></div>
+    <div><b>184</b><span>damga</span></div>
+    <div><b>8</b><span>ikram</span></div>
+    <div><b>13</b><span>sipariş</span></div>
+  </div>
+  <p class="small" style="margin-top:10px">Yayından sonraki ilk 13 gün, 12 Kasım 2026 itibarıyla.</p>
+</section>
+
+<section id="liste">
+  <h2><span class="n">11</span>Kontrol listesi</h2>
+  <p class="lead">Kendi uygulamanı yaparken sırayla bunlara bak.</p>
+  <ol class="check">
+    <li><strong>Uygulamanın tek işini seç</strong><span>Tek cümleyle anlatamıyorsan kapsam fazla.</span></li>
+    <li><strong>Ödeme isteyeni ilk sürümden çıkar</strong><span>Sözleşme, POS ve teslimat ayrı bir proje.</span></li>
+    <li><strong>Veriyi elle girme</strong><span>Elindeki dosyadan (kasa, Excel) üret.</span></li>
+    <li><strong>Kuralları sunucuya koy</strong><span>Yetki ve hesaplama sunucuda olursa uygulamayı baştan yazmak bile kolaylaşır.</span></li>
+    <li><strong>Hesap varsa hesap silme koy</strong><span>Apple bunu arıyor.</span></li>
+    <li><strong>Davranışı referansla anlat</strong><span>“Cüzdan'daki kart gibi” demek uzun tariften iyi.</span></li>
+    <li><strong>Her şeyi gerçek telefonda dene</strong><span>Simülatör ve testler her hatayı göstermiyor.</span></li>
+    <li><strong>İnceleme notlarını iyi yaz</strong><span>Apple'daki inceleyici neyi nasıl deneyeceğini bilmeli.</span></li>
+    <li><strong>Her günü not et</strong><span>Kararlar ve bekleyen işler bir sonraki günün başlangıcı.</span></li>
+    <li><strong>Kodu yapay zekâ yazsın, kararları sen ver</strong><span>Neyi yapmayacağına karar vermek en hızlandırıcı karar.</span></li>
+  </ol>
+</section>
+
+<footer>
+  <div class="serif">17 günün hikâyesi 5 bölüm halinde Instagram'da.</div>
+  <p>Kafenin uygulamasını nasıl yaptığımı, yayından önce yakaladığım hatayı ve kartın neden iki damgayla başladığını bölüm bölüm anlatıyorum. Sorularını DM'den sorabilirsin.</p>
+  <p><a href="https://www.instagram.com/itskeremozdemir/">@itskeremozdemir</a></p>
+</footer>
+<p class="small" style="margin-top:18px">Bu rehber kendi deneyimim. Hukuki ve vergisel konularda kendi durumuna göre bir uzmana danış.</p>
+
+</main>
+</body>
+</html>
